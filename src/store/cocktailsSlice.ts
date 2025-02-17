@@ -20,24 +20,18 @@ const cocktailsSlice = createSlice({
                                        updateCocktails: (state, action: PayloadAction<Cocktail[]>) => {
                                          const apiCocktails = action.payload;
 
-                                         state.cocktailsCollection = [...state.localCocktails, ...apiCocktails];
+                                         state.cocktailsCollection = apiCocktails;
                                        },
 
                                        addCocktail: (state, action: PayloadAction<Cocktail>) => {
                                          state.localCocktails.push(action.payload);
                                          localStorage.setItem("cocktails", JSON.stringify(state.localCocktails));
-
-                                         state.cocktailsCollection = [...state.localCocktails, ...state.cocktailsCollection];
                                        },
 
                                        deleteCocktail: (state, action: PayloadAction<number>) => {
                                          state.localCocktails = state.localCocktails.filter(
                                            (cocktail) => cocktail.id !== action.payload
                                          );
-
-                                         localStorage.setItem("cocktails", JSON.stringify(state.localCocktails));
-
-                                         state.cocktailsCollection = [...state.localCocktails];
                                        },
                                        updateFilter: (state, action: PayloadAction<string>) => {
                                          state.filter = action.payload;
