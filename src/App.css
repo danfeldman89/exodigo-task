@@ -1,5 +1,6 @@
 :root {
   --app-blue: #007BFF;
+  --app-text-color: #0e253d;
 }
 
 *,
@@ -23,7 +24,7 @@
 input {
   width: 100%;
   background-color: #ffffff;
-  color: #333;
+  color: var(--app-text-color);
   padding: 0.75rem;
   border: 1px solid #dedede;
   border-radius: 0.5rem;
@@ -47,7 +48,7 @@ input {
 }
 
 .read-the-docs {
-  color: #888;
+  color: var(--app-text-color);
 }
 
 button {

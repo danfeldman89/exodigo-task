@@ -11,7 +11,7 @@ function App() {
       <Router basename="/exodigo-task">
         <Routes>
           <Route path="/" element={<CocktailList />} />
-          <Route path="/product/:productId" element={<CocktailDetailsPage />} />
+          <Route path="/cocktail/:cocktailId" element={<CocktailDetailsPage />} />
         </Routes>
       </Router>
     </Provider>

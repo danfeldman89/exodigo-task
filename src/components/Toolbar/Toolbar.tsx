@@ -2,31 +2,10 @@ import styles from './Toolbar.module.css';
 import { useDebounce } from "../../hooks/useDebounce.ts";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { transformCocktailData } from "../../types/cocktail.ts";
 import { updateCocktails } from "../../store/cocktailsSlice.ts";
 import { useDispatch } from "react-redux";
-
-function fetchDBCocktails(debouncedSearch: string, dispatch: ReturnType<typeof useDispatch>) {
-  fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${debouncedSearch}`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error("Failed to fetch cocktails.");
-      }
-      return response.json();
-    })
-    .then(data => {
-      if (data.drinks !== "no data found") {
-        const cocktails = data.drinks.map(transformCocktailData);
-        console.log("Cocktails:", cocktails);
-        dispatch(updateCocktails(cocktails));
-      } else {
-        console.log("No cocktails found.");
-      }
-    })
-    .catch(error => {
-      console.error("Error fetching cocktails:", error);
-    });
-}
+import { fetchDBCocktails } from "../../store/dataRequest.ts";
+import { Cocktail } from "../../types/cocktail.ts";
 
 function Toolbar() {
   const dispatch = useDispatch();
@@ -58,7 +37,7 @@ function Toolbar() {
     }
 
     navigate(`?${params.toString()}`, { replace: true });
-    fetchDBCocktails(debouncedSearch, dispatch);
+    fetchDBCocktails(debouncedSearch, (cocktails: Cocktail[]) => dispatch(updateCocktails(cocktails)));
   }, [debouncedSearch]);
 
   return (
