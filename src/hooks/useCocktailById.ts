@@ -8,7 +8,7 @@ export default function useCocktailById(id: number) {
   const [result, setResult] = useState<Cocktail | undefined>(undefined);
 
   const cachedCocktail = useSelector((state: RootState) =>
-                                       state.cocktails.cocktailsCollection.find((cocktail) => cocktail.id === id)
+                                       state.cocktails.localCocktails.find((cocktail) => cocktail.id === id)
   );
 
   useEffect(() => {

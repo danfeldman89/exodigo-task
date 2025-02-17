@@ -29,10 +29,10 @@ function AddNewCocktailPage({}: AddNewCocktailPageProps) {
   useEffect(() => {
     if (isSubmitted) {
       const timeoutId = setTimeout(() => {
-        navigate(-1); // Navigate back
+        navigate(-1);
       }, 1000);
 
-      return () => clearTimeout(timeoutId); // Clean up the timeout on component unmount
+      return () => clearTimeout(timeoutId);
     }
   }, [isSubmitted]);
 

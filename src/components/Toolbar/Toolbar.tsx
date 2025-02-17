@@ -12,7 +12,7 @@ function Toolbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const initialQuery = new URLSearchParams(location.search).get("search") || "";
+  const initialQuery = new URLSearchParams(location.search).get("search") || "Lemon";
 
   const [query, setQuery] = useState(initialQuery);
   const debouncedSearch = useDebounce(query, 200);

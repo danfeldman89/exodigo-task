@@ -3,12 +3,20 @@ import { CocktailDisplay } from "../CocktailDisplay/CocktailDisplay.tsx";
 import { usePagination } from "../../hooks/usePagination.ts";
 import Toolbar from "../Toolbar/Toolbar.tsx";
 import { useFilteredCocktails } from "../../hooks/useFilteredCocktails.ts";
+import { useSelector } from "react-redux";
+import { RootState } from "../../store/store.ts";
+import { useEffect } from "react";
 
 const cocktailsPerPage = window.innerWidth < 768 ? 3 : 6;
 
 function CocktailList() {
   const cocktails = useFilteredCocktails();
   const [page, setPage] = usePagination(cocktails, cocktailsPerPage);
+  const apiCocktails = useSelector((state: RootState) => state.cocktails.cocktailsCollection);
+
+  useEffect(() => {
+    setPage(1)
+  }, [apiCocktails]);
 
   return (
     <>

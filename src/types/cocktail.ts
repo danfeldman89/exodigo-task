@@ -43,7 +43,6 @@ export class Cocktail {
 }
 
 export function transformCocktailData(rawCocktail: { [key: string]: string | null }): Cocktail {
-  // Extract and unify ingredients and their measures
   const ingredients: UnifiedIngredient[] = [];
   for (let i = 1; i <= 15; i++) {
     const ingredient = rawCocktail[`strIngredient${i}`];
@@ -53,7 +52,6 @@ export function transformCocktailData(rawCocktail: { [key: string]: string | nul
     }
   }
 
-  // Return the transformed Cocktail object
   return {
     id: Number(rawCocktail.idDrink),
     name: rawCocktail.strDrink || '',

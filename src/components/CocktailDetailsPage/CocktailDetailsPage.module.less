@@ -13,7 +13,11 @@
   color: var(--app-text-color);
 
   overflow-y: auto;
-  max-height: 100vh;
+  max-height: 90vh;
+
+  @media (max-width: 768px) {
+    width: 300px;
+  }
 
   &::-webkit-scrollbar {
     display: none;
@@ -35,7 +39,7 @@
   @media (max-width: 768px) {
     position: sticky;
     bottom: 0;
-    z-index: 10;
+    left: 0;
   }
 }
 
@@ -61,20 +65,18 @@
 }
 
 .details-container {
+  width: 100%;
   padding: 1rem;
   line-height: 1.5;
   display: flex;
   flex-direction: column;
+  max-height: 90vh;
   //align-items: center;
 
   h2 {
     font-size: 1.5rem;
     font-weight: bold;
     margin: 0.5rem 0;
-
-    @media (max-width: 768px) {
-      font-size: 0.8rem;
-    }
   }
 }
 
