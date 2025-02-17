@@ -12,16 +12,36 @@
   margin: 1rem auto;
   color: var(--app-text-color);
 
+  overflow-y: auto;
+  max-height: 100vh;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 
   &:hover {
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
+
+  @media (max-width: 768px) {
+    font-size: 0.5rem;
+  }
+
 }
 
 .backButton {
   width: 100%;
   border: none;
   border-radius: 0 0 5px 5px;
+
+  @media (max-width: 768px) {
+    position: sticky;
+    bottom: 0;
+    z-index: 10;
+  }
 }
 
 .image-container {
@@ -48,11 +68,18 @@
 .details-container {
   padding: 1rem;
   line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  //align-items: center;
 
   h2 {
     font-size: 1.5rem;
     font-weight: bold;
     margin: 0.5rem 0;
+
+    @media (max-width: 768px) {
+      font-size: 0.8rem;
+    }
   }
 }
 
@@ -62,6 +89,7 @@
 .instructions {
   font-size: 0.9rem;
   margin-bottom: 0.5rem;
+  align-self: flex-start;
 
   strong {
     color: var(--app-text-color);
@@ -70,14 +98,18 @@
 
 .instructions {
   color: var(--app-text-color);
+  align-self: flex-start;
+  text-align: start;
 }
 
 .ingredients {
   margin-top: 1rem;
   text-align: start;
+  align-self: flex-start;
 
   ul {
     padding-left: 1.2rem;
+
     li {
       font-size: 0.9rem;
       line-height: 1.4;

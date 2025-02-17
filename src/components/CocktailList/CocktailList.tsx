@@ -6,7 +6,7 @@ import { usePagination } from "../../hooks/usePagination.ts";
 import Toolbar from "../Toolbar/Toolbar.tsx";
 import { useEffect, useState } from "react";
 
-const cocktailsPerPage = 6;
+const cocktailsPerPage = window.innerWidth < 768 ? 3 : 6;
 
 function CocktailList() {
   const cocktails = useSelector((state: RootState) => state.cocktails.cocktailsCollection);

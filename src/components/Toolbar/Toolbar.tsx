@@ -43,7 +43,7 @@ function Toolbar() {
 
   return (
     <div className={styles.root}>
-      <button onClick={() => navigate("/new-cocktail")}>Add</button>
+      <button onClick={() => navigate("/new-cocktail")} className={styles.addButton}>Add</button>
       <input value={query}
              onChange={(e) => setQuery(e.target.value)}
              placeholder="Search..." />

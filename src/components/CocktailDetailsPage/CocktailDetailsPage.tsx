@@ -2,10 +2,6 @@ import { useParams, useNavigate } from 'react-router-dom';
 import styles from './CocktailDetailsPage.module.less';
 import useCocktailById from "../../hooks/useCocktailById.ts";
 
-interface CocktailDetailsPageProps {
-
-}
-
 const CocktailDisplay: React.FC = () => {
   const { cocktailId } = useParams<{ cocktailId: string }>();
   const navigate = useNavigate();

@@ -32,11 +32,22 @@
 
     input {
         margin: var(--toolbar-margin);
+        flex-grow: 1;
+        min-width: 0;
+        flex-basis: fit-content;
     }
 
     .addButton {
         display: flex;
-        min-width: 100px;
+        flex-basis: fit-content;
+    }
+
+    @media (max-width: 768px) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
     }
 }
 
