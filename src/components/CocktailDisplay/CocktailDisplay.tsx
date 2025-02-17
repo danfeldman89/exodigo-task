@@ -44,7 +44,7 @@ export function CocktailDisplay({ cocktail }: CocktailDisplayProps) {
           </p>
         </div>
         <div className={styles.ingredients}>
-          <strong>Ingredients:</strong>
+          <p><strong>Ingredients:</strong></p>
           <ul>
             {cocktail.ingredients?.map((ing, index) => (
               <li key={index}>

@@ -1,8 +1,9 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from './AddNewCocktailPage.module.less';
 import { Cocktail } from "../../types/cocktail.ts";
 import { useDispatch } from "react-redux";
 import { addCocktail } from "../../store/cocktailsSlice.ts";
+import { useNavigate } from "react-router-dom";
 
 interface AddNewCocktailPageProps {}
 
@@ -10,17 +11,30 @@ const initialIngredient = { ingredient: '', measure: '' };
 
 function AddNewCocktailPage({}: AddNewCocktailPageProps) {
   const [cocktail, setCocktail] = useState<Cocktail>(new Cocktail(
-                                                       '',
-                                                       '',
-                                                       'Non-Alcoholic',
-                                                       '',
-                                                       '',
-                                                       '',
-                                                       "https://www.thecocktaildb.com/images/media/drink/tqpvqp1472668328.jpg",
-                                                       [initialIngredient],
-                                                       true));
+    '',
+    '',
+    'Non-Alcoholic',
+    '',
+    '',
+    '',
+    "https://www.thecocktaildb.com/images/media/drink/tqpvqp1472668328.jpg",
+    [initialIngredient],
+    true));
 
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const [ingredientError, setIngredientError] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  useEffect(() => {
+    if (isSubmitted) {
+      const timeoutId = setTimeout(() => {
+        navigate(-1); // Navigate back
+      }, 1000);
+
+      return () => clearTimeout(timeoutId); // Clean up the timeout on component unmount
+    }
+  }, [isSubmitted]);
 
   const handleChange = (key: keyof Cocktail, value: string) => {
     setCocktail({ ...cocktail, [key]: value });
@@ -43,7 +57,19 @@ function AddNewCocktailPage({}: AddNewCocktailPageProps) {
 
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
+
+    const hasValidIngredient = cocktail.ingredients.some(
+      (ingredient) => ingredient.ingredient.trim() !== ''
+    );
+
+    if (!hasValidIngredient) {
+      setIngredientError(true);
+      return;
+    }
+
+    setIngredientError(false);
     dispatch(addCocktail(cocktail));
+    setIsSubmitted(true);
   };
 
   return (
@@ -137,10 +163,17 @@ function AddNewCocktailPage({}: AddNewCocktailPageProps) {
                )}
             </div>
           ))}
+          {ingredientError && (
+            <p className={styles.errorMessage}>
+              Please add at least one valid ingredient.
+            </p>
+          )}
+
         </div>
 
-        <button type="submit" className={styles.submitButton}>
-          Submit Cocktail
+        <button type="submit" className={`${styles.submitButton}
+        ${isSubmitted ? styles.isSubmitted : ''}`}>
+          {isSubmitted ? "Submitted!" : "Submit cocktail"}
         </button>
 
 
