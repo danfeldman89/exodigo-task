@@ -1,8 +1,8 @@
-import styles from './Toolbar.module.css';
+import styles from './Toolbar.module.less';
 import { useDebounce } from "../../hooks/useDebounce.ts";
 import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { updateCocktails } from "../../store/cocktailsSlice.ts";
+import { updateCocktails, updateFilter } from "../../store/cocktailsSlice.ts";
 import { useDispatch } from "react-redux";
 import { fetchDBCocktails } from "../../store/dataRequest.ts";
 import { Cocktail } from "../../types/cocktail.ts";
@@ -38,11 +38,12 @@ function Toolbar() {
 
     navigate(`?${params.toString()}`, { replace: true });
     fetchDBCocktails(debouncedSearch, (cocktails: Cocktail[]) => dispatch(updateCocktails(cocktails)));
+    dispatch(updateFilter(debouncedSearch))
   }, [debouncedSearch]);
 
   return (
     <div className={styles.root}>
-      <button>Button</button>
+      <button onClick={() => navigate("/new-cocktail")}>Add</button>
       <input value={query}
              onChange={(e) => setQuery(e.target.value)}
              placeholder="Search..." />

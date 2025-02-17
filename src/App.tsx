@@ -4,6 +4,7 @@ import CocktailList from "./components/CocktailList/CocktailList.tsx";
 import { Provider } from "react-redux";
 import store from "./store/store.ts";
 import CocktailDetailsPage from "./components/CocktailDetailsPage/CocktailDetailsPage.tsx";
+import AddNewCocktailPage from "./components/AddNewCocktailPage/AddNewCocktailPage.tsx";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Routes>
           <Route path="/" element={<CocktailList />} />
           <Route path="/cocktail/:cocktailId" element={<CocktailDetailsPage />} />
+          <Route path="/new-cocktail" element={<AddNewCocktailPage />} />
         </Routes>
       </Router>
     </Provider>

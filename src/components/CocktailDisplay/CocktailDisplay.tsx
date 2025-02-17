@@ -55,12 +55,11 @@ export function CocktailDisplay({ cocktail }: CocktailDisplayProps) {
         </div>
       </div>
 
-      <button
-        className={styles.deleteButton}
-        onClick={handleDelete}
-      >
-        Delete
-      </button>
+      {cocktail.isLocal && <button
+          className={styles.deleteButton}
+          onClick={handleDelete}>
+          Delete
+      </button>}
     </div>
   );
 }

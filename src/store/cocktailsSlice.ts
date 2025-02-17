@@ -4,11 +4,13 @@ import { Cocktail } from "../types/cocktail";
 interface InitialState {
   cocktailsCollection: Cocktail[];
   localCocktails: Cocktail[];
+  filter: string
 }
 
 const initialState: InitialState = {
   cocktailsCollection: [],
-  localCocktails: JSON.parse(localStorage.getItem("cocktails") || "[]")
+  localCocktails: JSON.parse(localStorage.getItem("cocktails") || "[]"),
+  filter: ""
 };
 
 const cocktailsSlice = createSlice({
@@ -25,7 +27,7 @@ const cocktailsSlice = createSlice({
                                          state.localCocktails.push(action.payload);
                                          localStorage.setItem("cocktails", JSON.stringify(state.localCocktails));
 
-                                         state.cocktailsCollection = [...state.localCocktails];
+                                         state.cocktailsCollection = [...state.localCocktails, ...state.cocktailsCollection];
                                        },
 
                                        deleteCocktail: (state, action: PayloadAction<number>) => {
@@ -36,10 +38,13 @@ const cocktailsSlice = createSlice({
                                          localStorage.setItem("cocktails", JSON.stringify(state.localCocktails));
 
                                          state.cocktailsCollection = [...state.localCocktails];
+                                       },
+                                       updateFilter: (state, action: PayloadAction<string>) => {
+                                         state.filter = action.payload;
                                        }
                                      }
                                    });
 
-export const { updateCocktails, addCocktail, deleteCocktail } =
+export const { updateCocktails, addCocktail, deleteCocktail, updateFilter } =
   cocktailsSlice.actions;
 export default cocktailsSlice.reducer;

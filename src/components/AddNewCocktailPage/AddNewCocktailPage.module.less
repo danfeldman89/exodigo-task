@@ -1,0 +1,166 @@
+.root {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  color: #333;
+  font-size: 24px;
+  margin-bottom: 1.5rem;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  color: #555;
+  align-self: flex-start;
+}
+
+input, select, textarea {
+  background-color: #ffffff; /* Ensure a white background */
+  color: #333; /* Dark text for legibility */
+  padding: 0.75rem 1rem;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: all 0.2s ease-in-out;
+}
+
+input:focus, select:focus, textarea:focus {
+  border-color: #66afe9;
+  box-shadow: 0 0 5px rgba(102, 175, 233, 0.6);
+}
+
+textarea {
+  resize: vertical; /* Prevent the horizontal resize */
+  min-height: 80px;
+}
+
+.ingredients {
+  margin-top: 1rem;
+}
+
+h3 {
+  color: #444;
+  font-size: 18px;
+  margin-bottom: 0.5rem;
+}
+
+.ingredientRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.ingredientRow input {
+  flex: 1;
+}
+
+.ingredientRow button {
+  padding: 0.5rem 1rem;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+textarea {
+  resize: none;
+  min-height: 80px;
+}
+
+button {
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 0.75rem 1.5rem;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+button:active {
+  transform: scale(0.98);
+}
+
+.submitButton {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.ingredients {
+  width: 100%;
+}
+
+.ingredientRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.ingredientRow input {
+  flex: 1;
+}
+
+.addPlaceholder {
+  min-width: 50px;
+  height: 100%;
+}
+
+.addIngredientButton {
+  min-width: 50px;
+  height: 100%;
+}
+
+.removeIngredientButton {
+  background: #ff5e5e;
+
+  min-width: 100px;
+  height: 100%;
+
+  &:hover {
+    background: #e04747;
+  }
+}
+
+.removePlaceholder {
+  min-width: 100px;
+  height: 100%;
+}
+
+
+@media (max-width: 768px) {
+  .root {
+    padding: 1rem;
+  }
+
+  .ingredientRow {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  button {
+    width: 100%;
+  }
+}

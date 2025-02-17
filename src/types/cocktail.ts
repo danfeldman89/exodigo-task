@@ -3,7 +3,7 @@ interface UnifiedIngredient {
   measure: string | null;
 }
 
-export interface Cocktail {
+export class Cocktail {
   id: number;
   name: string;
   category: string;
@@ -11,8 +11,35 @@ export interface Cocktail {
   glass: string;
   instructions: string;
   thumbnail: string;
-  imageUrl?: string | null; // Image source, optional because it may be null
+  imageUrl: string | null;
   ingredients: UnifiedIngredient[];
+  isLocal?: boolean;
+
+  static currentId: number = 100000;
+
+  constructor(
+    name: string = '',
+    category: string = '',
+    isAlcoholic: string = '',
+    glass: string = '',
+    instructions: string = '',
+    thumbnail: string = '',
+    imageUrl: string | null = null,
+    ingredients: UnifiedIngredient[] = [],
+    isLocal: boolean = false
+  ) {
+    Cocktail.currentId--;
+    this.id = Cocktail.currentId;
+    this.isLocal = isLocal;
+    this.name = name;
+    this.category = category;
+    this.isAlcoholic = isAlcoholic;
+    this.glass = glass;
+    this.instructions = instructions;
+    this.thumbnail = thumbnail;
+    this.imageUrl = imageUrl;
+    this.ingredients = ingredients;
+  }
 }
 
 export function transformCocktailData(rawCocktail: { [key: string]: string | null }): Cocktail {

@@ -53,7 +53,7 @@ const CocktailDisplay: React.FC = () => {
         </div>
       </div>
 
-      <button className={styles["back-button"]} onClick={() => navigate(-1)}>Back</button>
+      <button className={styles.backButton} onClick={() => navigate(-1)}>Back</button>
     </div>
   );
 };
